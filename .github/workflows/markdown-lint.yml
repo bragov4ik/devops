@@ -4,11 +4,21 @@ on:
   pull_request:
     branches:
       - master
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
 
 jobs:
+
   lint-changelog:
     name: Lint markdown
+
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+
     steps:
     - name: Check out code
       uses: actions/checkout@v2
