@@ -1,6 +1,6 @@
 # Moscow time zone web application
 
-[![Lint markdown files](https://github.com/bragov4ik/devops/actions/workflows/markdown-lint.yml/badge.svg)](https://github.com/bragov4ik/devops/actions/workflows/markdown-lint.yml) [![Python package](https://github.com/bragov4ik/devops/actions/workflows/python-build.yml/badge.svg)](https://github.com/bragov4ik/devops/actions/workflows/python-build.yml)
+[![Lint markdown files](https://github.com/bragov4ik/devops/actions/workflows/markdown-lint.yml/badge.svg)](https://github.com/bragov4ik/devops/actions/workflows/markdown-lint.yml) [![Python package](https://github.com/bragov4ik/devops/actions/workflows/python-package.yml/badge.svg)](https://github.com/bragov4ik/devops/actions/workflows/python-package.yml) [![Rust](https://github.com/bragov4ik/devops/actions/workflows/rust-package.yml/badge.svg)](https://github.com/bragov4ik/devops/actions/workflows/rust-package.yml) [![Rust audit](https://github.com/bragov4ik/devops/actions/workflows/rust-audit.yml/badge.svg)](https://github.com/bragov4ik/devops/actions/workflows/rust-audit.yml)
 
 This application launches a web server that runs on port 8000 and responds with current time in UTC/GMT +3 timezone.
 
@@ -76,3 +76,7 @@ To run use `cargo run`
 ## Usage
 
 When any of the servers is up and running, you can open [localhost:8000](localhost:8000) and you should see current Moscow time.
+
+### Unit tests
+
+To run tests write `cargo test` inside `app_rust` folder.

@@ -4,10 +4,20 @@ on:
   push:
     branches:
       - 'lab*'
-      - master
+      - $default-branch
+    paths:
+      - 'app_python/**'
+      - '.github/workflows/python-package.yml'
+      - '.github/workflows/docker-release.yml'
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
   pull_request:
     branches:
-      - master
+      - $default-branch 
+    paths:
+      - 'app_python/**'
+      - '.github/workflows/python-package.yml'
+      - '.github/workflows/docker-release.yml'
 
 permissions:
   contents: read
@@ -99,3 +109,10 @@ jobs:
           # Optional category for the results
           # Used to differentiate multiple results for one commit
           category: snyk-python-analysis
+  
+  docker-publish:
+    uses: ./.github/workflows/docker-release.yml
+    secrets: inherit
+    with:
+      docker_repo_name: time_web_app
+      project_folder: app_python
