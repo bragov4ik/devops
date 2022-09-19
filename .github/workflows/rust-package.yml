@@ -29,6 +29,7 @@ jobs:
     # It's better configured for rust thus not default
     - uses: Swatinem/rust-cache@v2
       with:
+        workspaces: "app_rust -> target"
         cache-on-failure: true
     - name: Code style check
       run: cargo fmt --all --verbose --check
