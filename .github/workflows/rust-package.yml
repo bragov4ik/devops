@@ -3,17 +3,7 @@ name: Rust
 on:
   push:
     branches:
-      - 'lab*'
-      - $default-branch
-    paths:
-      - 'app_rust/**'
-      - '.github/workflows/rust**'
-  pull_request:
-    branches:
-      - $default-branch 
-    paths:
-      - 'app_rust/**'
-      - '.github/workflows/rust**'
+      - '*'
 
 env:
   CARGO_TERM_COLOR: always
@@ -37,7 +27,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     # It's better configured for rust thus not default
-    - uses: Swatinem/rust-cache@v1
+    - uses: Swatinem/rust-cache@v2
       with:
         cache-on-failure: true
     - name: Code style check
