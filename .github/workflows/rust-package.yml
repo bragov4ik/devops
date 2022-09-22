@@ -27,7 +27,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     # It's better configured for rust thus not default
-    - uses: Swatinem/rust-cache@v2
+    - uses: Swatinem/rust-cache@v1
       with:
         workspaces: "app_rust -> target"
         cache-on-failure: true
