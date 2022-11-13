@@ -80,3 +80,58 @@ Seems similar to a stateful set. Runs a copy of specified pod on each node in th
 Volume/storage resource whose lifetime exceedes lifetime of a pod (because persistent). Can be different.
 
 Not sure if it makes sense to go more in detail, volumes seem pretty clear.
+
+# Helm report
+
+## Chart installation
+
+```bash
+~/Documents/Studying/devops/k8s$ helm package time-web-app-python
+Successfully packaged chart and saved it to: /home/bragov4ik/Documents/Studying/devops/k8s/time-web-app-python-0.1.0.tgz
+~/Documents/Studying/devops/k8s$ helm install time-web-app-python time-web-app-python-0.1.0.tgz 
+NAME: time-web-app-python
+LAST DEPLOYED: Sat Nov  5 17:02:21 2022
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+NOTES:
+1. Get the application URL by running these commands:
+     NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+           You can watch the status of by running 'kubectl get --namespace default svc -w time-web-app-python'
+  export SERVICE_IP=$(kubectl get svc --namespace default time-web-app-python --template "{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}")
+  echo http://$SERVICE_IP:80
+
+```
+
+## Service expose
+
+```bash
+~$ minikube service time-web-app-python --url
+http://192.168.49.2:31768
+```
+
+## Screenshots
+
+![Dashboard](report_artifacts/helm_release_works.png)
+
+![Get svc, pods](report_artifacts/helm_get_pods_svc.png)
+
+![Other outputs](report_artifacts/helm_other_outputs.png)
+
+## Bonus task
+
+Helm chart is installed the same way
+
+![outputs](report_artifacts/helm_bonus_outputs.png)
+
+### Helm library charts
+
+They play basically the same role as libraries in common programming languages. They allow to move commonly repeated code into a separate entity that is imported or used by other charts.
+
+The library charts cannot be deployed themselves and thus can only be a dependency of another chart
+
+So in our case, it seems that python and rust charts are basically the same, they seem to only differ in values provided. Therefore, it makes sense to move most of the code into a library to follow DRY strategy and supply appropriate values to it.
+
+### Umbrella charts
+
+A chart that combines multiple other subcharts. They allow to deploy a complex application consisting of multiple components as a single unit (if it is needed for some reason). Difference with a chart with multiple libraries as dependencies is that it seems to gather full-fledged charts (that can be deployed on their own) rather than some helper code that can't be deployed by itself.
