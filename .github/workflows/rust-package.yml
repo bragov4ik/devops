@@ -51,9 +51,9 @@ jobs:
           ~/.cargo/git/db/
           app_rust/target/
         # We want to update the cache as we build
-        key: primes-${{ runner.os }}-${{ github.run_id }}
+        key: rust-${{ runner.os }}-${{ github.run_id }}
         restore-keys: |
-          primes-${{ runner.os }}
+          rust-${{ runner.os }}-
 
     - name: Code style check
       run: cargo fmt --all --verbose --check
@@ -81,11 +81,11 @@ jobs:
           ~/.cargo/registry/index/
           ~/.cargo/registry/cache/
           ~/.cargo/git/db/
-          target/
+          app_rust/target/
         # We want to update the cache as we build
-        key: primes-${{ runner.os }}-${{ github.run_id }}
+        key: rust-${{ runner.os }}-${{ github.run_id }}
         restore-keys: |
-          primes-${{ runner.os }}
+          rust-${{ runner.os }}-
     - name: Run tests
       run: cargo test --verbose
   
